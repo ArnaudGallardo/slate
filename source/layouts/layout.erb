@@ -113,13 +113,24 @@ under the License.
       <div class="dark-box">
         <% if language_tabs.any? %>
           <div class="lang-selector">
+            <div class="lang-selector-header">
+              <p>Client libraries</p>
+            </div>
+            <div class="lang-selector-langs">
             <% language_tabs.each do |lang| %>
               <% if lang.is_a? Hash %>
                 <a href="#" data-language-name="<%= lang.keys.first %>"><%= lang.values.first %></a>
               <% else %>
-                <a href="#" data-language-name="<%= lang %>"><%= lang %></a>
+                <a href="#" data-language-name="<%= lang %>">
+                  <%= image_tag "icons/" + lang + ".svg", class: 'lang-logo' %>
+                  <span class="lang-text"><%= lang %></span>
+                </a>
               <% end %>
             <% end %>
+            </div>
+            <div class="lang-selector-install">
+              <pre><code>$ test foo</code></pre>
+            </div>
           </div>
         <% end %>
       </div>

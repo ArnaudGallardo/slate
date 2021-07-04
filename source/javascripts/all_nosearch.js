@@ -15,11 +15,12 @@ $(function() {
     window.recacheHeights();
     window.refreshToc();
   });
-
+  /*
   $(window).resize(function() {
     adjustLanguageSelectorWidth();
   });
   adjustLanguageSelectorWidth();
+  */
 });
 
 window.onpopstate = function() {
