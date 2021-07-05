@@ -165,6 +165,7 @@ under the License.
       var language = $(this).data("language-name");
       pushURL(language);
       activateLanguage(language);
+      window.dispatchEvent(new CustomEvent('language-selected', { language }));
       return false;
     });
   });

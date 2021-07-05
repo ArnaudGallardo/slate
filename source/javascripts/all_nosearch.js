@@ -2,11 +2,7 @@
 //= require ./app/_copy
 //= require ./app/_toc
 //= require ./app/_lang
-
-function adjustLanguageSelectorWidth() {
-  const elem = $('.dark-box > .lang-selector');
-  elem.width(elem.parent().width());
-}
+//= require ./lib/perfect-scrollbar
 
 $(function() {
   loadToc($('#toc'), '.toc-link', '.toc-list-h2', 10);
@@ -15,12 +11,19 @@ $(function() {
     window.recacheHeights();
     window.refreshToc();
   });
-  /*
+  // Add Perfect Scrollbar to examples
+  let tabs = [];
+  $('.tabs').each(function(){ tabs.push(new PerfectScrollbar($(this)[0])); });
   $(window).resize(function() {
-    adjustLanguageSelectorWidth();
+    tabs.forEach((tab) => {
+      tab.update();
+    });
   });
-  adjustLanguageSelectorWidth();
-  */
+  $(window).on('language-selected', function() {
+    for (const tab of tabs) {
+      tab.update();
+    }
+  });
 });
 
 window.onpopstate = function() {

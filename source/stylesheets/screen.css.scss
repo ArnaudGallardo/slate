@@ -3,6 +3,8 @@
 @import 'variables';
 @import 'icon-font';
 // @import 'rtl'; // uncomment to switch to RTL format
+// Import perfect-scrollbar
+@import "perfect-scrollbar.css";
 
 /*
 Copyright 2008-2013 Concur Technologies, Inc.
@@ -77,6 +79,9 @@ html, body {
     display: block;
     max-width: 100%;
     margin-bottom: $logo-margin;
+    max-height: 70px;
+    margin: auto;
+    margin-top: 10px;
   }
 
   &>.search {
@@ -379,9 +384,19 @@ html, body {
     clear: both;
   }
 
-  &>h1, &>h2, &>h3, &>h4, &>h5, &>h6, &>p, &>table, &>ul, &>ol, &>aside, &>dl {
+  &>h1, &>h2, &>h3, &>h4, &>h5, &>h6, &>p, &>table, &>ul, &>ol, &>dl {
     margin-right: $examples-width + $content-margin;
     margin-left: $content-margin;
+    padding: 0 $main-padding;
+    box-sizing: border-box;
+    display: block;
+
+    @extend %left-col;
+  }
+
+  &>aside {
+    margin-right: $examples-width + $content-margin + $main-padding;
+    margin-left: $content-margin + $main-padding;
     padding: 0 $main-padding;
     box-sizing: border-box;
     display: block;
@@ -427,6 +442,10 @@ html, body {
     //background-image: linear-gradient(to bottom, rgba(#fff, 0.2), rgba(#fff, 0));
   }
 
+  p {
+    text-align: justify;
+  }
+
   // h2s right after h1s should bump right up
   // against the h1s.
   h1 + h2, h1 + div + h2 {
@@ -449,6 +468,34 @@ html, body {
     margin: 2em 0;
     border-top: 2px solid $examples-bg;
     border-bottom: 2px solid $main-bg;
+  }
+
+  .params-list {
+    list-style: none;
+
+    .params-list-item {
+      padding-bottom: 1em;
+      border-top: 1px solid #3c4257;
+
+      h4 {
+        .params-list-item-name {
+          padding-right: 0.8em;
+        }
+
+        .params-list-item-detail {
+          font-weight: 500;
+          color: #8792a2;
+          margin: 0;
+        }
+        font-size: 12px;
+        margin-top: 0.8em;
+      }
+
+      div {
+        font-size: 14px;
+        color: #c1c9d2;
+      }
+    }
   }
 
   table {
@@ -587,6 +634,10 @@ html, body {
     border-radius: 8px 8px 0 0;
   }
 
+  &>div.first-block.last-block>pre, &>blockquote.first-block.last-block {
+    border-radius: 8px 8px 8px 8px !important;
+  }
+
   pre, blockquote {
     background-color: $code-bg;
     color: #fff;
@@ -616,11 +667,13 @@ html, body {
     padding-top: 2em;
     padding-bottom: 2em;
     padding: 2em $main-padding;
+    position: relative;
   }
 
   blockquote {
     background-color: $code-annotation-bg;
     &>p {
+      text-align: left;
       padding: $code-annotation-padding 2em;
       color: #eee;
     }
@@ -692,6 +745,8 @@ html, body {
 }
 
 .copy-clipboard {
+  position: fixed;
+  right: $content-margin * 1.3;
   float: right;
   fill: #9DAAB6;
   cursor: pointer;
